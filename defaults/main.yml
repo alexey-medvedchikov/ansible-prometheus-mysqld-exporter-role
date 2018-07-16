@@ -6,7 +6,7 @@ prometheus_mysqld_exporter_release_name: "mysqld_exporter-{{ prometheus_mysqld_e
 prometheus_mysqld_exporter_url: "https://github.com/prometheus/mysqld_exporter/releases/download/v{{ prometheus_mysqld_exporter_version }}/{{ prometheus_mysqld_exporter_release_name }}.tar.gz"
 
 prometheus_mysqld_exporter_mycnf:
-prometheus_mysqld_exporter_mycnf_path: /etc/mysqld_exporter/my.cnf
+prometheus_mysqld_exporter_mycnf_path: "{{ prometheus_exporters_common_conf_dir }}/mysqld-exporter/my.cnf"
 
 prometheus_mysqld_exporter_config_flags:
   'web.listen-address': ':9104'

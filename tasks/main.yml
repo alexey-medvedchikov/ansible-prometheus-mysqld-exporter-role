@@ -3,18 +3,18 @@
 - name: create directory for mysqld exporter credentials
   file:
     path: "{{ prometheus_mysqld_exporter_mycnf_path | dirname }}"
-    owner: "{{ prometheus_exporters_common_user }}"
+    owner: root
     group: "{{ prometheus_exporters_common_group }}"
-    mode: 0700
+    mode: 0760
     state: directory
 
 - name: save credentials for mysqld exporter
   copy:
     content: "{{ prometheus_mysqld_exporter_mycnf }}"
     dest: "{{ prometheus_mysqld_exporter_mycnf_path }}"
-    owner: "{{ prometheus_exporters_common_user }}"
+    owner: root
     group: "{{ prometheus_exporters_common_group }}"
-    mode: 0400
+    mode: 0640
   notify:
     - restart mysqld exporter
 
