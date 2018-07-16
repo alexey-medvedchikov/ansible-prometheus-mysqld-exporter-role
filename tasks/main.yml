@@ -5,7 +5,7 @@
     path: "{{ prometheus_mysqld_exporter_mycnf_path | dirname }}"
     owner: root
     group: "{{ prometheus_exporters_common_group }}"
-    mode: 0760
+    mode: 0750
     state: directory
 
 - name: save credentials for mysqld exporter
