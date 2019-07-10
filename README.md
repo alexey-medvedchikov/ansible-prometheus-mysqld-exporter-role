@@ -8,13 +8,14 @@ All needed packages will be installed with this role.
 
 ## Role Variables
 
-| Variable                                | Type   | Choices                           | Default                                                              | Comment                                                               |
-|-----------------------------------------|--------|-----------------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------|
-| prometheus_mysqld_exporter_version      | string | See [mysqld_exporter][1] releases | v0.11.0                                                              | Version of mysqld_exporter that will be installed.                    |
-| prometheus_mysqld_exporter_release_name | string |                                   | mysqld_exporter-{{ prometheus_mysqld_exporter_version }}.linux-amd64 | Name of the binary that will be download from the [releases][1]) page |
-| prometheus_mysqld_exporter_config_flags | dict   |                                   |                                                                      | Dict of key, value options to add to the start command line           |
-| prometheus_mysqld_exporter_mycnf        | string |                                   |                                                                      | Contents of MySQL client credentials file                             |
-| prometheus_mysqld_exporter_mycnf_path   | string |                                   | /etc/mysqld_exporter/my.cnf                                          | Path to store MySQL client credentials                                |
+| Variable                                | Type   | Choices                           | Default                                                              | Comment                                                                       |
+|-----------------------------------------|--------|-----------------------------------|----------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| prometheus_mysqld_exporter_version      | string | See [mysqld_exporter][1] releases | v0.12.0                                                              | Version of mysqld_exporter that will be installed.                            |
+| prometheus_mysqld_exporter_release_name | string |                                   | mysqld_exporter-{{ prometheus_mysqld_exporter_version }}.linux-amd64 | Name of the binary that will be download from the [releases][1]) page         |
+| prometheus_mysqld_exporter_config_flags | dict   |                                   | {}                                                                   | Dict of flag, flag-value options to start exporter with                       |
+| prometheus_mysqld_exporter_collectors   | dict   |                                   | {}                                                                   | Dict of flag, flag-value (ignored, leave blank) to control enabled collectors |
+| prometheus_mysqld_exporter_mycnf        | string |                                   |                                                                      | Contents of MySQL client credentials file                                     |
+| prometheus_mysqld_exporter_mycnf_path   | string |                                   | /etc/mysqld_exporter/my.cnf                                          | Path to store MySQL client credentials                                        |
 
 ## Dependencies
 
@@ -33,6 +34,9 @@ All needed packages will be installed with this role.
         [client]
         user = myusername
         password = 1qa2ws3ed
+      prometheus_mysqld_exporter_collectors:
+        collect.perf_schema.eventsstatements:
+        collect.perf_schema.eventsstatementssum:
 ```
 
 ## License
